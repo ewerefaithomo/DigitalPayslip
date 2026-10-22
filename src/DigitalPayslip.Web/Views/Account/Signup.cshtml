@@ -1,0 +1,38 @@
+@{
+    ViewBag.Title = "Signup";
+}
+
+<h2>Signup</h2>
+
+<!-- Success Message -->
+@if (TempData["Success"] != null)
+{
+    <div style="color:green; font-weight:bold; margin-bottom:10px;">
+        @TempData["Success"]
+    </div>
+}
+
+<!-- Error Messages -->
+@if (!ViewData.ModelState.IsValid)
+{
+    <div style="color:red; margin-bottom:10px;">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@error.ErrorMessage</div>
+        }
+    </div>
+}
+
+<form method="post">
+    <div style="margin-bottom:10px;">
+        <label>Email:</label><br />
+        <input name="email" type="email" required />
+    </div>
+
+    <div style="margin-bottom:10px;">
+        <label>Password:</label><br />
+        <input name="password" type="password" required />
+    </div>
+
+    <button type="submit">OK</button>
+</form>

@@ -1,0 +1,7 @@
+<h2>Login</h2><form method='post'><input name='email'/><input name='password'/><button>OK</button></form>
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}

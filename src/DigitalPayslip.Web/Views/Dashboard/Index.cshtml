@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2>Dashboard</h2>
+
+<!-- Display messages -->
+@if (!string.IsNullOrEmpty(TempData["UploadMessage"] as string))
+{
+    <p style="color:green; font-weight:bold;">@TempData["UploadMessage"]</p>
+}
+
+@if (!string.IsNullOrEmpty(TempData["ProcessMessage"] as string))
+{
+    <p style="color:blue; font-weight:bold;">@TempData["ProcessMessage"]</p>
+}
+
+<!-- Upload Payslip Button -->
+<form id="uploadForm" method="post" enctype="multipart/form-data" asp-action="Upload" asp-controller="Dashboard">
+    <input type="file" name="payslipFile" id="payslipFile" style="display:none"
+           onchange="setTimeout(function(){ document.getElementById('uploadForm').submit(); }, 100);" />
+    <button type="button" onclick="document.getElementById('payslipFile').click();">
+        Upload Payslip
+    </button>
+</form>
+
+<!-- Process Payslip Button -->
+<form method="post" asp-action="Process" asp-controller="Dashboard">
+    <button type="submit">Process Payslip</button>
+</form>
